@@ -10,6 +10,12 @@ export default function CodeRun () {
   // Placeholder code on CodeMirror load.
   const codeStub = '#include <stdio.h>\n\nint main(void)\n{\n    printf("Hello World");\n\n    return 0;\n}'
 
+  const buttonClass = [
+    "flex flex-row items-center h-full gap-2 px-4 text-white transition-all bg-emerald-600 hover:bg-emerald-500",
+    "flex flex-row items-center h-full gap-2 px-4 text-white transition-all bg-gray-600 text-gray-400 cursor-not-allowed"
+  ]
+  const iconClass = ["fill-white transition-all", "fill-gray-400 transition-all"]
+
   // Set code to placeholder on load.
   useEffect(() => {
     setCode(codeStub)
@@ -18,17 +24,15 @@ export default function CodeRun () {
   // Disable button if code editor empty
   useEffect(() => {
     if (!code) {
-      document.getElementById("runcode-button").style.backgroundColor = "#3f3f46"
-      document.getElementById("runcode-button").style.color = "#9ca3af"
-      document.getElementById("runcode-icon-play").style.fill = "#9ca3af"
-      document.getElementById("runcode-button").style.cursor = "not-allowed"
+      document.getElementById("runcode-button").setAttribute("class", buttonClass[1])
+      document.getElementById("runcode-icon-play").setAttribute("class", iconClass[1])
       document.getElementById("runcode-button").onclick = null
     } else {
-      document.getElementById("runcode-button").style.backgroundColor = "#059669"
-      document.getElementById("runcode-button").style.color = "#ffffff"
-      document.getElementById("runcode-icon-play").style.fill = "#ffffff"
-      document.getElementById("runcode-button").style.cursor = "pointer"
-      document.getElementById("runcode-button").onclick = "() => getOutput()}"
+      document.getElementById("runcode-button").setAttribute("class", buttonClass[0])
+      document.getElementById("runcode-icon-play").setAttribute("class", iconClass[0])
+      document.getElementById("runcode-button").onclick = () => {
+        getOutput()
+      }
     }
   }, [code])
 
@@ -44,11 +48,7 @@ export default function CodeRun () {
       <div className='h-12 w-[1000px] bg-black grid grid-cols-2'>
         <div className='flex flex-row items-center justify-between pl-5'>
           <span className='font-medium text-white'>Code</span>
-          <button
-            id='runcode-button'
-            className='flex flex-row items-center h-full gap-2 px-4 text-white transition-all bg-emerald-600'
-            onClick={() => getOutput()}
-          >
+          <button id='runcode-button' className={buttonClass[0]}>
             <Play weight='fill' className='fill-white' id='runcode-icon-play' />
             Run
           </button>
