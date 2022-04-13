@@ -1,4 +1,5 @@
 import Head from "next/head"
+import CodeRun from "../components/CodeRun"
 
 export default function Home () {
   return (
@@ -11,7 +12,7 @@ export default function Home () {
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍞</text></svg>"
         />
       </Head>
-      <p>Test</p>
+      <CodeRun />
     </div>
   )
 }
