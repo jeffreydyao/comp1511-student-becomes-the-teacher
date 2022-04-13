@@ -44,33 +44,37 @@ export default function CodeRun () {
   }
 
   return (
-    <div className='flex flex-col'>
-      <div className='h-12 w-[1000px] bg-black grid grid-cols-2'>
-        <div className='flex flex-row items-center justify-between pl-5'>
-          <span className='font-medium text-white'>Code</span>
+    <div className='grid w-screen h-screen grid-rows-2 md:grid-cols-2'>
+      <div className='flex flex-col md:h-screen'>
+        <div className='flex flex-row items-center justify-between flex-none h-12 bg-black'>
+          <span className='pl-5 font-medium text-white'>Code</span>
           <button id='runcode-button' className={buttonClass[0]}>
-            <Play weight='fill' className='fill-white' id='runcode-icon-play' />
+            <Play weight='fill' className='font-medium fill-white' id='runcode-icon-play' />
             Run
           </button>
         </div>
-        <div className='flex flex-row items-center justify-end pr-5'>
-          <span className='font-medium text-white'>Output</span>
+        <div className='h-full bg-[#282C34] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-700 hover:scrollbar-thumb-gray-600 scrollbar-track-gray-800'>
+          <CodeMirror
+            value={codeStub}
+            className=''
+            theme='dark'
+            extensions={[cpp({ cpp: true })]}
+            onChange={input => {
+              setCode(input)
+            }}
+          />
         </div>
+        <div className='flex-none hidden h-12 bg-black md:block'></div>
       </div>
-      <div className='flex flex-row'>
-        <CodeMirror
-          value={codeStub}
-          width='500px'
-          height='500px'
-          theme='dark'
-          extensions={[cpp({ cpp: true })]}
-          onChange={input => {
-            setCode(input)
-          }}
-        />
-        <div className='w-1/2 p-4 font-mono text-white bg-slate-900'>{output}</div>
+      <div className='flex flex-col md:h-screen'>
+        <div className='flex items-center justify-start flex-none h-12 bg-black md:justify-end'>
+          <span className='pl-5 font-medium text-white md:pr-5'>Output</span>
+        </div>
+        <div className='h-full p-4 overflow-y-scroll font-mono text-white bg-slate-900 scrollbar-thin scrollbar-thumb-gray-700 hover:scrollbar-thumb-gray-600 scrollbar-track-gray-800'>
+          {output}
+        </div>
+        <div className='flex-none h-12 bg-black'></div>
       </div>
-      <div className='w-full h-12 p-4 bg-black' />
     </div>
   )
 }
