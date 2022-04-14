@@ -44,7 +44,7 @@ export default function CodeRun () {
   }
 
   return (
-    <div className='grid grid-rows-2 md:grid-cols-2'>
+    <div className='grid grid-rows-2'>
       <div className='flex flex-col'>
         <div className='flex flex-row items-center justify-between flex-none h-12 bg-black'>
           <span className='pl-5 font-medium text-white'>Code</span>
@@ -64,10 +64,9 @@ export default function CodeRun () {
             }}
           />
         </div>
-        <div className='flex-none hidden h-12 bg-black md:block'></div>
       </div>
       <div className='flex flex-col'>
-        <div className='flex items-center justify-start flex-none h-12 bg-black md:justify-end'>
+        <div className='flex items-center justify-start flex-none h-12 bg-black'>
           <span className='pl-5 font-medium text-white md:pr-5'>Output</span>
         </div>
         <div className='h-full p-4 overflow-y-scroll font-mono text-white bg-slate-900 scrollbar-thin scrollbar-thumb-gray-700 hover:scrollbar-thumb-gray-600 scrollbar-track-gray-800'>
